@@ -14,7 +14,7 @@
  *
  */
 metadata {
-    definition (name: "Virtual Switch", namespace: "mhanan99", author: "Mark Hanan", runLocally: true, minHubCoreVersion: '000.021.00001', executeCommandsLocally: true, mnmn: "SmartThings", vid: "generic-switch") {
+    definition (name: "VirtualSwitch", namespace: "mhanan99", author: "Mark Hanan", runLocally: true, minHubCoreVersion: '000.021.00001', executeCommandsLocally: true, mnmn: "SmartThings", vid: "generic-switch") {
         capability "Actuator"
         capability "Sensor"
         capability "Switch"
