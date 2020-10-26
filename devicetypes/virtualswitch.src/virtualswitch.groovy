@@ -1,5 +1,5 @@
 metadata {
-	definition (name: "Virtual Switch", namespace: "mhanan", author: "SmartThings") {
+	definition (name: "VirtualSwitch", namespace: "mhanan99", author: "SmartThings") {
 		capability "Actuator"
 		capability "Switch"
  		capability "Sensor"
