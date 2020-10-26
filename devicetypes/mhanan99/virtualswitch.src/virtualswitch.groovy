@@ -1,46 +1,33 @@
 metadata {
-    definition (name: "Virtual Switch", namespace: "smartthings", author: "SmartThings", runLocally: true, minHubCoreVersion: '000.021.00001', executeCommandsLocally: true, mnmn: "SmartThings", vid: "generic-switch") {
-        capability "Actuator"
-        capability "Sensor"
-        capability "Switch"
-    }
+	definition (name: "Virtual Switch3", namespace: "mhanan", author: "SmartThings") {
+		capability "Actuator"
+		capability "Switch"
+ 		capability "Sensor"
+	}
 
-    preferences {}
+	// simulator metadata
+	simulator {
+	}
 
-    tiles(scale: 2) {
-        multiAttributeTile(name:"switch", type: "lighting", width: 6, height: 4, canChangeIcon: true){
-            tileAttribute ("device.switch", key: "PRIMARY_CONTROL") {
-                attributeState "on", label:'${name}', action:"switch.off", icon:"st.Home.home30", backgroundColor:"#00A0DC", nextState:"turningOff"
-                attributeState "off", label:'${name}', action:"switch.on", icon:"st.Home.home30", backgroundColor:"#FFFFFF", nextState:"turningOn", defaultState: true
-                attributeState "turningOn", label:'Turning On', action:"switch.off", icon:"st.Home.home30", backgroundColor:"#00A0DC", nextState:"turningOn"
-                attributeState "turningOff", label:'Turning Off', action:"switch.on", icon:"st.Home.home30", backgroundColor:"#FFFFFF", nextState:"turningOff"
-            }
-        }
-
-        standardTile("explicitOn", "device.switch", width: 2, height: 2, decoration: "flat") {
-            state "default", label: "On", action: "switch.on", icon: "st.Home.home30", backgroundColor: "#ffffff"
-        }
-        standardTile("explicitOff", "device.switch", width: 2, height: 2, decoration: "flat") {
-            state "default", label: "Off", action: "switch.off", icon: "st.Home.home30", backgroundColor: "#ffffff"
-        }
-
-        main(["switch"])
-        details(["switch", "explicitOn", "explicitOff"])
-
-    }
+	// UI tile definitions
+	tiles {
+		standardTile("button", "device.switch", width: 2, height: 2, canChangeIcon: true) {
+			state "off", label: 'Off', action: "switch.on", icon: "st.switches.switch.off", backgroundColor: "#ffffff", nextState: "on"
+			state "on", label: 'On', action: "switch.off", icon: "st.switches.switch.on", backgroundColor: "#00A0DC", nextState: "off"
+		}
+		main "button"
+		details "button"
+	}
 }
 
-def parse(description) {
+def parse(String description) {
 }
+
 
 def on() {
-    sendEvent(name: "switch", value: "on", isStateChange: true)
+	sendEvent(name: "switch", value: "on")
 }
 
 def off() {
-    sendEvent(name: "switch", value: "off", isStateChange: true)
-}
-
-def installed() {
-    on()
+	sendEvent(name: "switch", value: "off")
 }
